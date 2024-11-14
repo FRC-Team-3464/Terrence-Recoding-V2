@@ -20,12 +20,20 @@ public class DriveSubsystem extends SubsystemBase {
   private static CANSparkMax rightBack = new CANSparkMax(8, MotorType.kBrushless);
 
 
-  public static DifferentialDrive drive = new DifferentialDrive(leftFront, rightFront);
+  private static DifferentialDrive drive = new DifferentialDrive(leftFront, rightFront);
+
+  private static DriveSubsystem instance = null;
 
   public DriveSubsystem() {
     leftFront.setInverted(true);
   }
 
+  public static DriveSubsystem getInstance(){
+    if (instance == null){
+      instance = new DriveSubsystem();
+    }
+    return instance;
+  }
 
   public void tankDrive(double left, double right) {
 
