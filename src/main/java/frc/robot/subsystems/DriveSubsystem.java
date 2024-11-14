@@ -13,17 +13,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
-  
+  //assigns the motor positions to a motor, define motors
   private static CANSparkMax leftFront = new CANSparkMax( 5, MotorType.kBrushless);
   private static CANSparkMax leftBack = new CANSparkMax(6, MotorType.kBrushless);
   private static CANSparkMax rightFront = new CANSparkMax(7, MotorType.kBrushless);
   private static CANSparkMax rightBack = new CANSparkMax(8, MotorType.kBrushless);
 
-
+  // defining the front drive systems
   private static DifferentialDrive drive = new DifferentialDrive(leftFront, rightFront);
+
 
   private static DriveSubsystem instance = null;
 
+  // sets the left front motor inverted
   public DriveSubsystem() {
     leftFront.setInverted(true);
   }
@@ -35,8 +37,9 @@ public class DriveSubsystem extends SubsystemBase {
     return instance;
   }
 
+  // creates tank drive
   public void tankDrive(double left, double right) {
-
+    // prevents stick drift
     if(Math.abs(left) <= 0.07) {
       left = 0;
     }
@@ -44,28 +47,30 @@ public class DriveSubsystem extends SubsystemBase {
       right=0;
     }
 
-
+    // setting the differential drive to tank drive
     drive.tankDrive(left, right);
-
+    // make back motors follow the front
     leftBack.follow(leftFront);
     rightBack.follow(rightFront);
 
   }
 
-  
+  // making arcade drive
   public void arcadeDrive(double speed, double rotation) {
+    // sets the differential drive to arcade drive
     drive.arcadeDrive(speed, rotation); 
 
+    // making back motors follow the front
     leftBack.follow(leftFront);
     rightBack.follow(rightFront);
   }
 
-
+  // stops the motor
   public void stopDrive() {
     arcadeDrive(0, 0);
   }
 
-
+  // gets values
   public double getLeft(){
     return leftFront.get();
   }
@@ -74,6 +79,7 @@ public class DriveSubsystem extends SubsystemBase {
     return rightFront.get();
   }
 
+  // sets motor mode
   public void enableMotors(boolean on){
     IdleMode mode;
     if (on) {
