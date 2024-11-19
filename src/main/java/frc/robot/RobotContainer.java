@@ -8,10 +8,13 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ElevatorRun;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.DriveCommands.ArcadeDrive;
 import frc.robot.commands.RunningIntakeSystems.IntakeRunBoth;
 import frc.robot.commands.RunningIntakeSystems.IntakeRunBottom;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -21,9 +24,17 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
+
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+
+  private final DriveSubsystem driveSub = DriveSubsystem.getInstance();
+
+  private final ArcadeDrive arcadeDrive = new ArcadeDrive(driveSub);
+
+
+
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -52,6 +63,9 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+    // Moves robot when joystick is pressed 
+    CommandScheduler.getInstance().setDefaultCommand(driveSub, arcadeDrive);
 
     OperatorConstants.button1.whileTrue(new IntakeRunBoth());
     OperatorConstants.button2.whileTrue(new IntakeRunBottom());
