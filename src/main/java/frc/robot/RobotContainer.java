@@ -8,7 +8,12 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ElevatorRun;
 import frc.robot.commands.ExampleCommand;
+
 import frc.robot.commands.DriveCommands.ArcadeDrive;
+
+import frc.robot.commands.Shoot;
+import frc.robot.commands.RunningIntakeSystems.Eject;
+
 import frc.robot.commands.RunningIntakeSystems.IntakeRunBoth;
 import frc.robot.commands.RunningIntakeSystems.IntakeRunBottom;
 import frc.robot.subsystems.DriveSubsystem;
@@ -71,7 +76,8 @@ public class RobotContainer {
     OperatorConstants.button2.whileTrue(new IntakeRunBottom());
     OperatorConstants.button11.whileTrue(new ElevatorRun(true));
     OperatorConstants.button4.whileTrue(new ElevatorRun(false));
-
+    OperatorConstants.button6.whileTrue(new Shoot());
+    OperatorConstants.button12.whileTrue(new Eject());
   }
 
   /**
