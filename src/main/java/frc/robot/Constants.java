@@ -21,7 +21,7 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
 
     public static final Joystick auxStick = new Joystick(0); 
-    public static final XboxController xbox = new XboxController(2);
+    public static final XboxController xbox = new XboxController(3);
 
     public static final JoystickButton button1 = new JoystickButton(auxStick, 1);
     public static final JoystickButton button2 = new JoystickButton(auxStick, 2);

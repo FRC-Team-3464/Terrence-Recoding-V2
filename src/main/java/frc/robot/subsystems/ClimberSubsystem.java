@@ -30,15 +30,15 @@ public class ClimberSubsystem extends SubsystemBase {
 
   // Method to move the elevator up if it doesn't hit switch.
   public void elevatorUp(){
-    if(topLimitSwitch.get() == true){
+    if(!topLimitSwitch.get() == true){
       elevatorMotor.set(0);
     } else {
-      elevatorMotor.set(1);
+      elevatorMotor.set(-1);
     }
   }
   // Method to move the elevator down if it hits switch.
   public void elevatorDown(){
-    if (bottomLimitSwitch.get() == true){
+    if (!bottomLimitSwitch.get() == true){
       elevatorMotor.set(0);
     } else {
       elevatorMotor.set(1);
@@ -68,6 +68,8 @@ public class ClimberSubsystem extends SubsystemBase {
   // }
 
   public void periodic() {
+    // System.out.println(topLimitSwitch.get());
+    System.out.println(bottomLimitSwitch.get());
     // This method will be called once per scheduler run
   }
 }
