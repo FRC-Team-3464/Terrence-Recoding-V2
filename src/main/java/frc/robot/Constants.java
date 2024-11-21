@@ -27,5 +27,7 @@ public final class Constants {
     public static final JoystickButton button2 = new JoystickButton(auxStick, 2);
     public static final JoystickButton button11 = new JoystickButton(auxStick, 11);
     public static final JoystickButton button4 = new JoystickButton(auxStick, 4);
+    public static final JoystickButton button6 = new JoystickButton(auxStick, 6);
+    public static final JoystickButton button12 = new JoystickButton(auxStick, 12);
   }
 }
