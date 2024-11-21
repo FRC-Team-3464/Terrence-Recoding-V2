@@ -35,7 +35,7 @@ public class IntakeSubsystem extends SubsystemBase {
     lowerMotor.set(-0.25);
   }
   // this will spit out the ball through the bottom
-  public void ejectBall() {
+  public void ejectBalls() {
     upperMotor.set(0.29);
     lowerMotor.set(0.27);
   }
