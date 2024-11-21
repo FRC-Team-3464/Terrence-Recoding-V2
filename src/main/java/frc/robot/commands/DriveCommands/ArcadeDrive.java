@@ -35,7 +35,7 @@ public class ArcadeDrive extends CommandBase {
   @Override
   public void execute() {
     // Using the controller to get the speed and rotation using method from drive subsystem
-    driveSub.arcadeDrive(controller.getLeftY(),controller.getRightX());
+    driveSub.arcadeDrive(controller.getLeftY()*.5,controller.getRightX()*0.5);
   }
 
   // Called once the command ends or is interrupted.
